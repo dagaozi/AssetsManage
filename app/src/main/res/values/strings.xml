@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AssetsManage</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_operator">OperatorActivity</string>
+    <string name="title_activity_recycle_view">RecycleViewActivity</string>
+    <string name="title_activity_refresh_recycler_view">RefreshRecyclerViewActivity</string>
+</resources>
