@@ -25,8 +25,10 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         toast.showToast("出来吧");
         //mToolbar.setVisibility(View.GONE);
-        mToolbar.setNavigationIcon(null);
         setTitleName("资产盘点");
+        mToolbar.setNavigationIcon(null);
+        //sideView.openDrawer();
+
 
 
     }
