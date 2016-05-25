@@ -35,6 +35,7 @@ public class ApiServiceModule {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor);
         httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         httpClientBuilder.readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        //httpClientBuilder.sslSocketFactory(null);
         return httpClientBuilder;
     }
     @Provides

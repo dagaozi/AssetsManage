@@ -7,7 +7,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/appBar_height"
-    android:background="@color/app_base_color">
+    android:background="?attr/colorPrimary">
     <TextView
         android:id="@+id/tv_toolbar"
         android:layout_gravity="center"

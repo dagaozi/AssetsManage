@@ -151,7 +151,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .withActivity(this)
                // .withToolbar(mToolbar)
                 .withDrawerGravity(Gravity.RIGHT)
-                .withTranslucentStatusBar(false)
+                .withTranslucentStatusBar(true)
                 .withActionBarDrawerToggle(false)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("功能1").withSubItems( new SecondaryDrawerItem().withName("子菜单1")),
