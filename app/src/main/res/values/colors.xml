@@ -5,7 +5,10 @@
     <color name="google_green">#008744</color>
     <color name="google_yellow">#ffa700</color>
     <color name="app_base_color">#00a6ac</color>
+    <color name="app_bg_color">#DEDEDE</color>
 
     <!--字体-->
     <color name="txt_white">#fffffb</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

@@ -40,5 +40,6 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.btnTest)
     public void btnClick(Button btn){
         startActivity(new Intent(MainActivity.this,Main2Activity.class));
+       // startActivity(new Intent(MainActivity.this,LoginActivity.class));
     }
 }
