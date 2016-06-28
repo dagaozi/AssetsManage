@@ -48,7 +48,7 @@ public class ApiFactory {
     {
         @Override
         public T call(HttpResult<T> httpResult) {
-            if(httpResult.getCode()!=0){
+            if(httpResult.getCode()==0){
                 throw new ApiException(httpResult.getCode());
             }
             return httpResult.getData();

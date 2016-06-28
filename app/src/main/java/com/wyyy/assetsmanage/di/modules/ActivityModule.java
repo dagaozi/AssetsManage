@@ -3,8 +3,6 @@ package com.wyyy.assetsmanage.di.modules;
 import android.app.Activity;
 
 import com.wyyy.assetsmanage.di.scope.ActivityScope;
-import com.wyyy.assetsmanage.net.ApiMethods;
-import com.wyyy.assetsmanage.utils.ToastUtil;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,14 +27,5 @@ public class ActivityModule {
         return mActivity;
     }
 
-    @Provides
-    @ActivityScope
-    ApiMethods getApiMethods(){
-        return  new ApiMethods();
-    }
-    @Provides
-    @ActivityScope
-    ToastUtil getToastUtil(){
-        return  new ToastUtil(mActivity.getApplicationContext());
-    }
+
 }

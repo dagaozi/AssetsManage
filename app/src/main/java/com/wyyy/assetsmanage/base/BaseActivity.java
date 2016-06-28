@@ -23,8 +23,6 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.wyyy.assetsmanage.R;
 import com.wyyy.assetsmanage.di.component.AppComponent;
-import com.wyyy.assetsmanage.di.component.DaggerActivityComponent;
-import com.wyyy.assetsmanage.di.modules.ActivityModule;
 import com.wyyy.assetsmanage.net.ApiMethods;
 import com.wyyy.assetsmanage.utils.ToastUtil;
 
@@ -63,8 +61,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
        protected void setUpActivityComponet(){
-          DaggerActivityComponent.builder().appComponent(getAppComponent()).activityModule(new ActivityModule(this)).build().inject(this);
-
+         // DaggerActivityComponent.builder().appComponent(getAppComponent()).activityModule(new ActivityModule(this)).build().inject(this);
+           this.getAppComponent().inject(this);
     }
     protected AppComponent getAppComponent() {
 
@@ -95,9 +93,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
     private void initBaseData(){
         super.setContentView(R.layout.base_activity);
-
-
-
         mBaseLayout=(LinearLayout)findViewById(R.id.content);
         initToolbar();
         initSideView();

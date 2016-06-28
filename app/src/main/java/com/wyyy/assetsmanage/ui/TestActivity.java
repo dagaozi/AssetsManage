@@ -38,7 +38,7 @@ public class TestActivity extends Activity {
                         if(isLogin)
                         startActivity(new Intent(TestActivity.this, MainActivity.class));
                         else
-                            startActivity(new Intent(TestActivity.this, LoginActivity.class));
+                            startActivity(new Intent(TestActivity.this, MainActivity.class));
                         finish();
                     }
 

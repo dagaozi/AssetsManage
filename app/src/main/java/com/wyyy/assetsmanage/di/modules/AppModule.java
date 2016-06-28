@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.wyyy.assetsmanage.base.BaseApp;
+import com.wyyy.assetsmanage.net.ApiMethods;
+import com.wyyy.assetsmanage.utils.ToastUtil;
 
 import javax.inject.Singleton;
 
@@ -17,18 +19,29 @@ import dagger.Provides;
  */
 @Module
 public class AppModule {
-    private BaseApp app;
-    public AppModule (BaseApp app){
-        this.app=app;
+    private BaseApp baseApp;
+    public AppModule (BaseApp baseApp){
+        this.baseApp=baseApp;
     }
     @Provides
     @Singleton
     public Context produceAppContext(){
-        return app;
+        return baseApp.getApplicationContext();
     }
     @Provides
     @Singleton
     public Resources provideResources(){
-        return app.getResources();
+        return baseApp.getApplicationContext().getResources();
+    }
+
+    @Provides
+    @Singleton
+    ApiMethods provideApiMethods(){
+        return  new ApiMethods();
+    }
+    @Provides
+    @Singleton
+    ToastUtil provideToastUtil(){
+        return  new ToastUtil(baseApp.getApplicationContext());
     }
 }
