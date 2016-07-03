@@ -1,6 +1,7 @@
 package com.wyyy.assetsmanage.base;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.wyyy.assetsmanage.di.component.AppComponent;
 import com.wyyy.assetsmanage.di.component.DaggerAppComponent;
@@ -13,9 +14,11 @@ import com.wyyy.assetsmanage.di.modules.AppModule;
  */
 public class BaseApp extends Application{
     private AppComponent component;
+    public static Context appContext=null;
     @Override
     public void onCreate() {
         super.onCreate();
+        appContext=this;
       setUpComponent();
     }
 

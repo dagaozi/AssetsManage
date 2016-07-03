@@ -2,11 +2,11 @@ package com.wyyy.assetsmanage.net;
 
 /**
  * Created by dagaozi on 2016/3/29.
+ * 网络错误处理
  */
 public class ApiException extends RuntimeException {
-
-    public static final int USER_NOT_EXIST = 100;
-    public static final int WRONG_PASSWORD = 101;
+    public static final int USER_NOT_EXIST = 101;
+    public static final int WRONG_PASSWORD = 102;
 
     public ApiException(int resultCode) {
         this(getApiExceptionMessage(resultCode));

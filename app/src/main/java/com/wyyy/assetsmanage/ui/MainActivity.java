@@ -10,6 +10,7 @@ import com.wyyy.assetsmanage.base.IBaseSubscriber;
 import com.wyyy.assetsmanage.di.component.AppComponent;
 import com.wyyy.assetsmanage.model.TestModel;
 import com.wyyy.assetsmanage.utils.LogUtils;
+import com.wyyy.assetsmanage.utils.NetUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -35,6 +36,7 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
         mToolbar.setNavigationIcon(null);
         //sideView.openDrawer();
         getTaobaodata2("21.22.11.33");
+        //getChaoshi();
 
 
     }
@@ -62,7 +64,6 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
 
             @Override
             public void onNext(TestModel o) {
-                toast.showToast("回调");
               toast.showToast(o.getCountry());
             }
         };
@@ -74,11 +75,18 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
         Subscription sn = apiMethods.getTaoboData(new BaseSubscriber<TestModel>(this, 1), ip);
         addSubscription(sn);
     }
+    private void getChaoshi(){
+        Subscription sn = apiMethods.getChaoshi(new BaseSubscriber<TestModel>(this, 2));
+        addSubscription(sn);
+    }
 
     @Override
     public void onNext(Object o, int flag) {
         switch (flag) {
             case 1:
+                toast.showToast(((TestModel)o).getCountry());
+                break;
+            case 2:
                 toast.showToast(((TestModel)o).getCountry());
                 break;
             default:
@@ -93,7 +101,8 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
 
     @Override
     public void onError(Throwable e) {
-        toast.showToast(e.getMessage());
+        toast.showToast( NetUtils.checkApiException(e));
+       // toast.showToast(e.getMessage());
         LogUtils.e(e.getMessage());
     }
 }

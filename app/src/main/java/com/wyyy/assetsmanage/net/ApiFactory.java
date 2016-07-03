@@ -12,6 +12,7 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by dagaozi on 2016/3/30.
+ * 线程管理、订阅，获取的数据分析、剥离
  */
 public class ApiFactory {
 /*   private static ApiStores apiStores = null;
@@ -48,7 +49,7 @@ public class ApiFactory {
     {
         @Override
         public T call(HttpResult<T> httpResult) {
-            if(httpResult.getCode()==0){
+            if(httpResult.getCode()!=0){
                 throw new ApiException(httpResult.getCode());
             }
             return httpResult.getData();

@@ -26,5 +26,9 @@ public class ApiMethods extends ApiFactory {
         Observable observable=apiStores.getTaobaoData(ip);
         return toSubscribe(observable.map(new HttpResultFunc<TestModel>()),subscriber);
     }
+    public Subscription getChaoshi(Subscriber<TestModel> subscriber){
+        Observable observable=apiStores.chaoshi();
+        return toSubscribe(observable.map(new HttpResultFunc<TestModel>()),subscriber);
+    }
 
 }

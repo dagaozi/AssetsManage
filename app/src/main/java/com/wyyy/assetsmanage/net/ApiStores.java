@@ -15,4 +15,7 @@ public interface ApiStores {
 
     @GET("http://ip.taobao.com/service/getIpInfo.php?ip=21.22.11.33")
     Observable<HttpResult<TestModel>> getTaobaoData(@Query("ip") String ip);
+
+    @GET( "http://10.11.74.18/Test02/getDate")
+    Observable<HttpResult<TestModel>> chaoshi();
 }
