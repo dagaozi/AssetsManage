@@ -36,7 +36,6 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
         mToolbar.setNavigationIcon(null);
         //sideView.openDrawer();
         getTaobaodata2("21.22.11.33");
-        //getChaoshi();
 
 
     }
@@ -50,7 +49,7 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
         startActivity(new Intent(MainActivity.this,Main2Activity.class));
        // startActivity(new Intent(MainActivity.this,LoginActivity.class));
     }
-    private  void getTestData(String ip){
+    private  void getTaobaodata(String ip){
         Subscriber subscriber=new Subscriber<TestModel>() {
             @Override
             public void onCompleted() {
@@ -59,12 +58,13 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
 
             @Override
             public void onError(Throwable e) {
-                toast.showToast("onError");
+                toast.showToast( NetUtils.checkApiException(e));
             }
 
             @Override
             public void onNext(TestModel o) {
               toast.showToast(o.getCountry());
+
             }
         };
         Subscription sn=apiMethods.getTaoboData(subscriber,ip);
@@ -75,8 +75,13 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
         Subscription sn = apiMethods.getTaoboData(new BaseSubscriber<TestModel>(this, 1), ip);
         addSubscription(sn);
     }
-    private void getChaoshi(){
-        Subscription sn = apiMethods.getChaoshi(new BaseSubscriber<TestModel>(this, 2));
+    //使用BaseSubscriber访问网络
+    private void getTaobaodata3(String ip) {
+        Subscription sn = apiMethods.getTaoboData(new BaseSubscriber<TestModel>(this, 1), ip);
+/*
+        Observable observable=apiStores.getTaobaoData(ip);
+         toSubscribe(observable,subscriber);
+*/
         addSubscription(sn);
     }
 

@@ -22,13 +22,12 @@ public class ApiMethods extends ApiFactory {
     }
     @Inject
     ApiStores apiStores;
+
     public Subscription getTaoboData(Subscriber<TestModel> subscriber, String ip){
         Observable observable=apiStores.getTaobaoData(ip);
-        return toSubscribe(observable.map(new HttpResultFunc<TestModel>()),subscriber);
-    }
-    public Subscription getChaoshi(Subscriber<TestModel> subscriber){
-        Observable observable=apiStores.chaoshi();
-        return toSubscribe(observable.map(new HttpResultFunc<TestModel>()),subscriber);
+        return toSubscribe(observable,subscriber);
+
+
     }
 
 }
