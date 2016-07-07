@@ -9,13 +9,17 @@ import com.wyyy.assetsmanage.base.BaseSubscriber;
 import com.wyyy.assetsmanage.base.IBaseSubscriber;
 import com.wyyy.assetsmanage.di.component.AppComponent;
 import com.wyyy.assetsmanage.model.TestModel;
+import com.wyyy.assetsmanage.net.HttpResultFunc;
 import com.wyyy.assetsmanage.utils.LogUtils;
 import com.wyyy.assetsmanage.utils.NetUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity implements IBaseSubscriber{
 
@@ -35,7 +39,9 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
         setTitleName("资产盘点");
         mToolbar.setNavigationIcon(null);
         //sideView.openDrawer();
-        getTaobaodata2("21.22.11.33");
+       // getTaobaodata2("21.22.11.33");
+
+        getTaobaoData4("21.22.11.33");
 
 
     }
@@ -84,6 +90,14 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
 */
         addSubscription(sn);
     }
+    private void getTaobaoData4(String ip){
+        Observable observable=apiStores.getTaobaoData(ip);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new HttpResultFunc<TestModel>())
+                .subscribe(new BaseSubscriber<TestModel>(this,4));
+
+    }
 
     @Override
     public void onNext(Object o, int flag) {
@@ -93,6 +107,9 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber{
                 break;
             case 2:
                 toast.showToast(((TestModel)o).getCountry());
+                break;
+            case 4:
+                toast.showToast(((TestModel)o).getCountry()+"4");
                 break;
             default:
                 toast.showToast("没有对应flag");

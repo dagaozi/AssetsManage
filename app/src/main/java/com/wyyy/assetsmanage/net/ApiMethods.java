@@ -14,6 +14,7 @@ import rx.Subscription;
 
 /**
  * Created by dagaozi on 2016/3/30.
+ * 网络返回数据加工处理类
  */
 public class ApiMethods extends ApiFactory {
     public ApiMethods(){

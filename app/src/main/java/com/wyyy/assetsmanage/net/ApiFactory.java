@@ -22,6 +22,10 @@ public class ApiFactory {
         }
         return apiStores;
     }*/
+
+
+
+
     //线程管理、订阅（不优雅方式）
 @SuppressWarnings("unchecked")
     protected Subscription toSubscribe1(Observable o, Subscriber s)
@@ -35,7 +39,6 @@ public class ApiFactory {
     @SuppressWarnings("unchecked")
     protected <T>Subscription toSubscribe2(Observable<T> o, Subscriber s)
     {
-
         return o.map((Func1<? super T, ? extends T>) new Func1<HttpResult<T>,T>() {
             @Override
             public T call(HttpResult<T> httpResult) {
@@ -49,7 +52,7 @@ public class ApiFactory {
 
 
 
-    //线程管理、订阅、数据过滤
+    //线程管理、订阅、数据过滤(最终版)
     @SuppressWarnings("unchecked")
     protected <T>Subscription toSubscribe(Observable<T> o, Subscriber s)
     {
@@ -72,8 +75,6 @@ public class ApiFactory {
             return httpResult.getData();
         }
     }
-
-
     /**
      * 负责线程切换
      * */

@@ -24,6 +24,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.wyyy.assetsmanage.R;
 import com.wyyy.assetsmanage.di.component.AppComponent;
 import com.wyyy.assetsmanage.net.ApiMethods;
+import com.wyyy.assetsmanage.net.ApiStores;
 import com.wyyy.assetsmanage.utils.ToastUtil;
 
 import javax.inject.Inject;
@@ -44,6 +45,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     private CompositeSubscription mCompositeSubscription;
     @Inject
     public ApiMethods apiMethods;
+    @Inject
+    public ApiStores apiStores;
     @Inject
     public ToastUtil toast;
 
@@ -100,6 +103,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void setTitleName(String name){
         tvTitle.setText(name);
     }
+
 
     /**
      * 初始化导航栏
