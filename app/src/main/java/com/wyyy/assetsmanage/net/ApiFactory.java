@@ -54,6 +54,12 @@ public class ApiFactory {
 
     //线程管理、订阅、数据过滤(最终版)
     @SuppressWarnings("unchecked")
+    /**
+     *
+     *Created by 郝海滨（dagaozi@163.com）
+     *创建时间 2016/7/19 10:40
+     *描述：
+     */
     protected <T>Subscription toSubscribe(Observable<T> o, Subscriber s)
     {
         return o.map((Func1<? super T, ? extends T>) new HttpResultFunc<T>())
@@ -80,7 +86,7 @@ public class ApiFactory {
      * */
     final Observable.Transformer schedulersTransformer = new  Observable.Transformer() {
         @Override public Object call(Object observable) {
-            return ((Observable)  observable).subscribeOn(Schedulers.newThread())
+            return ((Observable)  observable).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread());
         }
     };

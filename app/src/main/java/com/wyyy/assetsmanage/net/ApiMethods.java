@@ -4,10 +4,14 @@ package com.wyyy.assetsmanage.net;
 import com.wyyy.assetsmanage.di.component.ApiServiceComponent;
 import com.wyyy.assetsmanage.di.component.DaggerApiServiceComponent;
 import com.wyyy.assetsmanage.di.modules.ApiServiceModule;
+import com.wyyy.assetsmanage.model.TaskModel;
 import com.wyyy.assetsmanage.model.TestModel;
+import com.wyyy.assetsmanage.model.UploadResult;
 
 import javax.inject.Inject;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
@@ -28,6 +32,20 @@ public class ApiMethods extends ApiFactory {
         Observable observable=apiStores.getTaobaoData(ip);
         return toSubscribe(observable,subscriber);
 
+    }
+    public Subscription getTestData(Subscriber<TestModel> subscriber, String gid ,String key){
+        Observable observable=apiStores.getTestData(gid,key);
+        return toSubscribe(observable,subscriber);
+
+    }
+    public Subscription getTasksData(Subscriber<TaskModel> subscriber){
+        Observable observable=apiStores.getTasksData();
+        return toSubscribe(observable,subscriber);
+
+    }
+    public Subscription upLoad(Subscriber<UploadResult> subscriber, RequestBody description, MultipartBody.Part body){
+        Observable observable=apiStores.upLoad(description,body);
+        return toSubscribe(observable,subscriber);
 
     }
 

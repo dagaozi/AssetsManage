@@ -2,8 +2,10 @@ package com.wyyy.assetsmanage.base.recyclerView;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
@@ -16,6 +18,7 @@ public class RefreshForRecyclerView extends SwipeRefreshLayout {
     private final int mTouchSlop;
     private RecyclerView mRecyclerView;
     private OnLoadListener mOnLoadListener;
+    private LinearLayoutManager mLayoutManager;
 
     private float firstTouchY;
     private float lastTouchY;
@@ -29,6 +32,7 @@ public class RefreshForRecyclerView extends SwipeRefreshLayout {
     public RefreshForRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        mLayoutManager = new LinearLayoutManager(context);
     }
 
     //set the child view of RefreshLayout,ListView
@@ -53,6 +57,18 @@ public class RefreshForRecyclerView extends SwipeRefreshLayout {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                int lastVisibleItem =  mLayoutManager.findLastVisibleItemPosition();
+                int totalItemCount = mLayoutManager.getItemCount();
+                //lastVisibleItem >= totalItemCount - 1 表示剩下4个item自动加载，各位自由选择
+                // dy>0 表示向下滑动
+                if (lastVisibleItem >= totalItemCount - 4 && dy > 0) {
+                    if(isLoading){
+                        Log.d("TAG","ignore manually update!");
+                    } else{
+                        loadData();//这里多线程也要手动控制isLoadingMore
+                        isLoading = false;
+                    }
+                }
             }
         });
     }

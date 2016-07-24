@@ -16,6 +16,7 @@
     <string name="snack_message_password_error">密码错误</string>
     <string name="snack_message_unknown_error">未知错误</string>
     <string name="snack_message_data_error">数据解析错误</string>
+    <string name="waiting">请稍候......</string>
 
     <string name="snack_action_to_setting">设置</string>
 

@@ -13,6 +13,8 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -49,6 +51,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     public ApiStores apiStores;
     @Inject
     public ToastUtil toast;
+    private boolean isLoading=false;
+    private MaterialDialog progressDialog;
 
     public CompositeSubscription getCompositeSubscription() {
         if (this.mCompositeSubscription == null) {
@@ -195,13 +199,46 @@ public abstract class BaseActivity extends AppCompatActivity {
             return true;
 
     }
-
+  public void showProgressDialog(){
+      if(isLoading)
+          return;
+      if(progressDialog==null){
+          MaterialDialog.Builder builder = new MaterialDialog.Builder(this)
+                  .content(R.string.waiting)
+                  .theme(Theme.LIGHT)
+                  .progressIndeterminateStyle(true)
+                  .cancelable(false)
+                  .progress(true, 0);
+          progressDialog=builder.build();
+      }
+      progressDialog.show();
+      isLoading=true;
+  }
+    public void hideProgressDialog(){
+        if(progressDialog!=null){
+            try{
+                progressDialog.dismiss();
+            }
+            catch (Exception e){
+                progressDialog=null;
+            }
+        }
+        isLoading=false;
+    }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        ButterKnife.unbind(BaseActivity.this);
+        if(mCompositeSubscription!=null)
+            mCompositeSubscription.unsubscribe();
+    }
+
+  /*  @Override
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(BaseActivity.this);
         if(mCompositeSubscription!=null)
             mCompositeSubscription.unsubscribe();
-    }
+    }*/
 }
