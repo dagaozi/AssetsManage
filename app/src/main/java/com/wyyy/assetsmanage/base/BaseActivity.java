@@ -1,5 +1,6 @@
 package com.wyyy.assetsmanage.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -60,6 +61,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         return this.mCompositeSubscription;
     }
+    /**
+     *
+     *Created by 郝海滨（dagaozi@163.com）
+     *创建时间 2016/7/26 15:16
+     *描述：将订阅统一添加到CompositeSubscription，便于释放引用
+     */
     public void addSubscription(Subscription s) {
         if (this.mCompositeSubscription == null) {
             this.mCompositeSubscription = new CompositeSubscription();
@@ -75,7 +82,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         return ((BaseApp) getApplication()).getAppcomponet();
     }
-    protected  abstract void setUpComponent(AppComponent appComponent);
+    /**
+     *
+     *Created by 郝海滨（dagaozi@163.com）
+     *创建时间 2016/7/26 15:15
+     *描述：依赖注入使用，暂未使用
+     */
+  //  protected  abstract void setUpComponent(AppComponent appComponent);
     protected abstract void initViews();
     protected  abstract void initEvents();
 
@@ -92,7 +105,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         initBaseData();
-       setUpComponent(getAppComponent());
+       //setUpComponent(getAppComponent());
         setUpActivityComponet();
 
         initViews();
@@ -199,6 +212,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             return true;
 
     }
+    /**
+     *
+     *Created by 郝海滨（dagaozi@163.com）
+     *创建时间 2016/7/26 15:14
+     *描述：显示进度条
+     */
   public void showProgressDialog(){
       if(isLoading)
           return;
@@ -214,6 +233,12 @@ public abstract class BaseActivity extends AppCompatActivity {
       progressDialog.show();
       isLoading=true;
   }
+    /**
+     *
+     *Created by 郝海滨（dagaozi@163.com）
+     *创建时间 2016/7/26 15:14
+     *描述：隐藏进度条
+     */
     public void hideProgressDialog(){
         if(progressDialog!=null){
             try{
@@ -225,12 +250,39 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         isLoading=false;
     }
+   /**
+    *
+    *Created by 郝海滨（dagaozi@163.com）
+    *创建时间 2016/7/26 15:13
+    *描述：启动其他Activity
+    */
+    public void startCOActivity(Class<?> c) {
+        Intent intent = new Intent(this, c);
+        startActivity(intent);
+    }
+    public void startCOActivity(Class<?> c, String intentKey, int intentValue) {
+        Intent intent = new Intent(this, c);
+        intent.putExtra(intentKey, intentValue);
+        startActivity(intent);
+    }
+    public void startCOActivity(Class<?> c, String intentKey, String intentValue) {
+        Intent intent = new Intent(this, c);
+        intent.putExtra(intentKey, intentValue);
+        startActivity(intent);
+    }
+    public void startCOActivity(Class<?> c, Bundle bundle) {
+        Intent intent = new Intent(this, c);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onStop() {
         super.onStop();
         ButterKnife.unbind(BaseActivity.this);
         if(mCompositeSubscription!=null)
+            //页面stop()时将订阅关系取消，释放引用，防止内存泄露
             mCompositeSubscription.unsubscribe();
     }
 

@@ -9,7 +9,6 @@ import com.wyyy.assetsmanage.R;
 import com.wyyy.assetsmanage.base.BaseActivity;
 import com.wyyy.assetsmanage.base.BaseSubscriber;
 import com.wyyy.assetsmanage.base.IBaseSubscriber;
-import com.wyyy.assetsmanage.di.component.AppComponent;
 import com.wyyy.assetsmanage.model.TaskModel;
 import com.wyyy.assetsmanage.model.TestData;
 import com.wyyy.assetsmanage.model.TestModel;
@@ -45,10 +44,7 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber {
     Button btnTest;
 
 
-    @Override
-    protected void setUpComponent(AppComponent appComponent) {
 
-    }
 
     @Override
     protected void initViews() {
