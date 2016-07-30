@@ -5,7 +5,7 @@ import rx.Subscriber;
 /**
  * Created by dagaozi on 2016/3/31.
  */
-public class BaseSubscriber<T> extends Subscriber<T> {
+public class  BaseSubscriber<T> extends Subscriber<T> {
     private  IBaseSubscriber iBaseSubscriber;
     private int flag;
 
@@ -30,7 +30,7 @@ public class BaseSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
- iBaseSubscriber.onError(e);
+      iBaseSubscriber.onError(e);
     }
 
 

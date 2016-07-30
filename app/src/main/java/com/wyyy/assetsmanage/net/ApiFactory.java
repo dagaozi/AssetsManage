@@ -62,7 +62,16 @@ public class ApiFactory {
      */
     protected <T>Subscription toSubscribe(Observable<T> o, Subscriber s)
     {
-        return o.map((Func1<? super T, ? extends T>) new HttpResultFunc<T>())
+        return o
+             /*   .doOnError(new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.e("doOnError",throwable.getMessage());
+                throw new RuntimeException(throwable);
+
+            }
+        })*/
+                .map((Func1<? super T, ? extends T>) new HttpResultFunc<T>())
                 .compose(applySchedulers()).subscribe(s);
     }
 

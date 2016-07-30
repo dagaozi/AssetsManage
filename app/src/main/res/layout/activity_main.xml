@@ -18,5 +18,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="APITest"/>
+    <Button
+        android:id="@+id/btnTest2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnTest"
+        android:layout_marginTop="15dp"
+        android:text="APITest2"/>
+    <Button
+        android:id="@+id/btnTest3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnTest2"
+        android:layout_marginTop="15dp"
+        android:text="APITest3"/>
+    <Button
+        android:id="@+id/btnTest4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnTest3"
+        android:layout_marginTop="15dp"
+        android:text="APITest4"/>
 
 </RelativeLayout>
