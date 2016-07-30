@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 import com.wyyy.assetsmanage.R;
 import com.wyyy.assetsmanage.base.BaseActivity;
-import com.wyyy.assetsmanage.di.component.AppComponent;
 
 import butterknife.Bind;
 import rx.Observable;
@@ -23,10 +22,6 @@ public class WelcomeActivity extends BaseActivity {
     @Bind(R.id.img_welcome)
     ImageView imgWelcome;
 
-    @Override
-    protected void setUpComponent(AppComponent appComponent) {
-
-    }
 
     @Override
     protected void initViews() {

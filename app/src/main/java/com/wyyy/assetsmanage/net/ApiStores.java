@@ -5,14 +5,8 @@ import com.wyyy.assetsmanage.model.HttpResult;
 import com.wyyy.assetsmanage.model.TaskModel;
 import com.wyyy.assetsmanage.model.TestData;
 import com.wyyy.assetsmanage.model.TestModel;
-import com.wyyy.assetsmanage.model.UploadResult;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -36,8 +30,8 @@ public interface ApiStores {
     @GET( "http://10.11.74.13/api/Test/GetTasks")
     Observable<HttpResult<TaskModel>> getTasksData();
 
-    @Multipart
+   /* @Multipart
     @POST( "http://10.11.74.13/api/Test/UploadFile2")
-    Observable<HttpResult<UploadResult>> upLoad(@Part("abc") RequestBody description, @Part MultipartBody.Part file);
+    Observable<HttpResult<UploadResult>> upLoad(@Part("abc") RequestBody description, @Part MultipartBody.Part file);*/
 
 }

@@ -2,14 +2,9 @@ package com.wyyy.assetsmanage.ui;
 
 import com.wyyy.assetsmanage.R;
 import com.wyyy.assetsmanage.base.BaseActivity;
-import com.wyyy.assetsmanage.di.component.AppComponent;
 
 public class Main2Activity extends BaseActivity {
 
-    @Override
-    protected void setUpComponent(AppComponent appComponent) {
-
-    }
 
     @Override
     protected void initViews() {
