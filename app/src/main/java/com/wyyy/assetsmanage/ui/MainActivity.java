@@ -14,15 +14,10 @@ import com.wyyy.assetsmanage.model.UploadResult;
 import com.wyyy.assetsmanage.utils.LogUtils;
 import com.wyyy.assetsmanage.utils.NetUtils;
 
-import java.util.concurrent.TimeUnit;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Observable;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * 主页
@@ -35,27 +30,13 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber {
     @Bind(R.id.btnTest)
     Button btnTest;
 
-
-
-
     @Override
     protected void initViews() {
 
         setContentView(R.layout.activity_main);
-
-        toast.showToast("出来吧");
         //mToolbar.setVisibility(View.GONE);
         setTitleName("资产盘点");
         mToolbar.setNavigationIcon(null);
-        //sideView.openDrawer();
-
-
-        //getTaobaoData4("21.22.11.33");
-       // getTestData("sh601009","2922ce9890eda95ccb4fde316d709a88");
-       // getTestData1();
-       // getTestData2();
-        //upLoad();
-
 
     }
 
@@ -75,21 +56,6 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber {
     private void getTaobaodata2(String ip) {
         Subscription sn = apiMethods.getTaoboData(new BaseSubscriber<TestModel>(this, 1), ip);
         addSubscription(sn);
-    }
-
-
-
-    private void getTestData(String gid,String key) {
-        showProgressDialog();
-        Observable observable = apiStores.getTestData(gid,key);
-        Subscription sn =  observable
-        .delay(5, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-
-                .subscribe(new BaseSubscriber<TestData>(this, 5));
-        addSubscription(sn);
-
     }
 
 
