@@ -1,6 +1,6 @@
 package com.wyyy.assetsmanage.ui;
 
-import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import com.wyyy.assetsmanage.R;
@@ -11,11 +11,8 @@ import com.wyyy.assetsmanage.model.TaskModel;
 import com.wyyy.assetsmanage.model.TestData;
 import com.wyyy.assetsmanage.model.TestModel;
 import com.wyyy.assetsmanage.model.UploadResult;
-import com.wyyy.assetsmanage.utils.LogUtils;
-import com.wyyy.assetsmanage.utils.NetUtils;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
 
@@ -102,15 +99,9 @@ public class MainActivity extends BaseActivity implements IBaseSubscriber {
 
     @Override
     public void onError(Throwable e) {
-        toast.showToast(NetUtils.checkApiException(e));
-        // toast.showToast(e.getMessage());
-        LogUtils.e(e.getMessage());
+
+        Log.d("onError",e.getMessage());
+
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }
